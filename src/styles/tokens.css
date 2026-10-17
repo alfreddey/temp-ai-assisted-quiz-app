@@ -1,0 +1,96 @@
+/*
+ * Loop design tokens, mirrored from the Figma "Loop UI kit v1.0" local variables.
+ * Names follow the Figma variable paths (surface/canvas → --surface-canvas).
+ */
+:root {
+  /* Surfaces */
+  --surface-canvas: #f5f8f5;
+  --surface-default: #ffffff;
+  --surface-strong: #142923;
+  --surface-green-50: #e8f8ee;
+  --surface-green-700: #166648;
+  --surface-blue-50: #edf3fc;
+  --surface-amber-50: #fff3d6;
+  --surface-red-50: #fff0f1;
+  --surface-red-700: #ad3546;
+  --surface-neutral-200: #cddad2;
+  --surface-neutral-600: #5d7066;
+  --surface-tone-1: #6de5a2; /* primary hover */
+  --surface-tone-2: #e5ebe6; /* disabled */
+  --surface-tone-4: #eae3fb; /* lavender */
+  --surface-tone-5: #ffe6d5; /* peach */
+
+  /* Actions */
+  --action-primary: #8ef0ba;
+
+  /* Text */
+  --text-primary: #142923;
+  --text-secondary: #5d7066;
+  --text-inverse: #ffffff;
+  --text-mint-400: #8ef0ba;
+  --text-green-700: #166648;
+  --text-blue-700: #315d99;
+  --text-amber-800: #795414;
+  --text-red-700: #ad3546;
+  --text-tone-3: #87968d; /* disabled */
+
+  /* Borders */
+  --border-default: #cddad2;
+  --border-ink-900: #142923;
+  --border-green-700: #166648;
+  --border-red-700: #ad3546;
+  --border-neutral-600: #5d7066;
+
+  /* Focus: 2 px green edge + 4 px soft outer ring */
+  --focus-ring: 0 0 0 4px rgba(34, 123, 88, 0.2);
+
+  /* Spacing */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-56: 56px;
+
+  /* Radius */
+  --radius-3: 3px;
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-32: 32px;
+  --radius-full: 999px;
+
+  /* Type families */
+  --font-display: "Nunito Sans", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+/* Loop text styles */
+.t-display {
+  font: 900 48px/52px var(--font-display);
+  letter-spacing: -1.2px;
+}
+.t-h1 {
+  font: 900 36px/40px var(--font-display);
+  letter-spacing: -1.2px;
+}
+.t-h2 {
+  font: 800 28px/34px var(--font-display);
+}
+.t-h3 {
+  font: 800 22px/28px var(--font-display);
+}
+.t-body {
+  font: 400 16px/26px var(--font-body);
+}
+.t-label {
+  font: 700 14px/20px var(--font-body);
+}
+.t-caption {
+  font: 500 12px/18px var(--font-body);
+}
