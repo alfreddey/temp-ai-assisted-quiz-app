@@ -10,12 +10,12 @@ const SAMPLES: Record<Subject, Quiz> = {
     questions: [
       {
         prompt: "Solve for x: 3x + 7 = 22",
-        context: "Get x by itself — whatever you do to one side, do to the other.",
+        context: "Get x by itself. Whatever you do to one side, do to the other.",
         options: ["x = 3", "x = 5", "x = 7", "x = 15"],
         answerIndex: 1,
         hint: "Undo the + 7 first, then undo the multiplication by 3.",
         explanation: {
-          headline: "x = 5 — undo each step in reverse.",
+          headline: "x = 5. Undo each step in reverse.",
           why: "We isolate x by reversing each operation in the opposite order it was applied.",
           steps: ["3x + 7 = 22 → subtract 7 → 3x = 15", "Divide both sides by 3 → x = 5"],
           check: "3(5) + 7 = 22. It works!",
@@ -28,7 +28,7 @@ const SAMPLES: Record<Subject, Quiz> = {
         answerIndex: 2,
         hint: "Add 4 to both sides before dividing.",
         explanation: {
-          headline: "Nice — y = 7.",
+          headline: "Nice work, y = 7.",
           why: "Adding 4 cancels the − 4, leaving 2y alone so we can divide.",
           steps: ["2y − 4 = 10 → add 4 → 2y = 14", "Divide both sides by 2 → y = 7"],
           check: "2(7) − 4 = 10. ✓",
@@ -39,12 +39,12 @@ const SAMPLES: Record<Subject, Quiz> = {
         context: "Substitute −2 into each one and see which balances.",
         options: ["x + 5 = 7", "4x = 8", "x − 3 = −5", "2x + 1 = 3"],
         answerIndex: 2,
-        hint: "Plug x = −2 into each equation — only one side will match.",
+        hint: "Plug x = −2 into each equation. Only one will balance.",
         explanation: {
           headline: "x − 3 = −5 is the one.",
           why: "Substituting is a fast way to test a candidate solution without solving each equation.",
           steps: ["−2 − 3 = −5", "Both sides equal −5, so x = −2 is a solution"],
-          check: "The others give 3 = 7, −8 = 8 and −3 = 3 — all false.",
+          check: "The others give 3 = 7, −8 = 8 and −3 = 3, which are all false.",
         },
       },
       {
@@ -54,7 +54,7 @@ const SAMPLES: Record<Subject, Quiz> = {
         answerIndex: 1,
         hint: "Remove the fixed $15 before thinking about the per-GB price.",
         explanation: {
-          headline: "6 GB — you translated the story perfectly.",
+          headline: "6 GB. You translated the story perfectly.",
           why: "The fixed fee comes off first; what’s left is the usage charge.",
           steps: ["15 + 2g = 27 → subtract 15 → 2g = 12", "Divide by 2 → g = 6"],
           check: "15 + 2(6) = 27. ✓",
@@ -105,7 +105,7 @@ const SAMPLES: Record<Subject, Quiz> = {
         answerIndex: 2,
         hint: "It’s the gas you breathe in.",
         explanation: {
-          headline: "Oxygen — exactly right.",
+          headline: "Oxygen is exactly right.",
           why: "When water molecules are split using light energy, oxygen is released as a by-product.",
           steps: ["6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂", "O₂ leaves through the stomata"],
           check: "Count the products in the equation: glucose and oxygen.",
@@ -164,7 +164,7 @@ const SAMPLES: Record<Subject, Quiz> = {
           headline: "They gain energy and move more freely.",
           why: "Heat gives particles enough energy to break out of their fixed positions and slide past each other.",
           steps: ["Solid: particles vibrate in place", "Add heat → particles overcome some attractions", "Liquid: particles flow past each other"],
-          check: "The particles are the same — only their arrangement and energy change.",
+          check: "The particles stay the same. Only their arrangement and energy change.",
         },
       },
       {
@@ -175,7 +175,7 @@ const SAMPLES: Record<Subject, Quiz> = {
         hint: "Which one makes a brand-new substance?",
         explanation: {
           headline: "Rusting is a chemical change.",
-          why: "Iron reacts with oxygen and water to form iron oxide — a new substance with new properties.",
+          why: "Iron reacts with oxygen and water to form iron oxide, a new substance with new properties.",
           steps: ["4Fe + 3O₂ → 2Fe₂O₃", "The product can’t be turned back into iron by cooling or drying"],
           check: "Melting, dissolving and boiling are all reversible physical changes.",
         },
@@ -185,7 +185,7 @@ const SAMPLES: Record<Subject, Quiz> = {
         context: "",
         options: ["0 °C", "37 °C", "100 °C", "212 °C"],
         answerIndex: 2,
-        hint: "212 is right — but in Fahrenheit.",
+        hint: "212 is right, but only in Fahrenheit.",
         explanation: {
           headline: "100 °C.",
           why: "At standard atmospheric pressure, water’s vapour pressure equals air pressure at 100 °C.",
@@ -279,7 +279,7 @@ const SAMPLES: Record<Subject, Quiz> = {
           headline: "“Peter picked a peck of peppers.”",
           why: "Alliteration repeats the same first consonant sound in nearby words.",
           steps: ["Peter, picked, peck, peppers", "Four words start with /p/"],
-          check: "Say it out loud — the repeated sound pops.",
+          check: "Say it out loud and the repeated sound pops.",
         },
       },
       {
@@ -343,7 +343,7 @@ const SAMPLES: Record<Subject, Quiz> = {
           headline: "Democracy.",
           why: "Athenian citizens voted directly on laws in the assembly.",
           steps: ["Demos = people, kratos = power", "Citizens met in the Ekklesia to vote"],
-          check: "Only adult male citizens could vote — a limit worth noticing.",
+          check: "Only adult male citizens could vote, which is a limit worth noticing.",
         },
       },
     ],

@@ -29,7 +29,7 @@ export class AiUnavailableError extends Error {}
 
 const QUIZ_SYSTEM = `You write multiple-choice practice quizzes for Loop, a friendly community learning app.
 
-Voice: optimistic, plain language, encouraging — like a patient older classmate. Never condescending.
+Voice: optimistic, plain language, encouraging, like a patient older classmate. Never condescending.
 
 For every question:
 - Exactly four options. One is clearly correct; the distractors reflect real, common misconceptions.
@@ -55,7 +55,7 @@ function wrap(error: unknown): never {
     throw new AiUnavailableError(error.message);
   }
   if (error instanceof Anthropic.APIError) throw error;
-  // Anything else comes from the client before a request is sent — most often
+  // Anything else comes from the client before a request is sent, most often
   // "Could not resolve authentication method" when no credentials are configured.
   throw new AiUnavailableError(error instanceof Error ? error.message : String(error));
 }
@@ -126,11 +126,11 @@ Learner's follow-up: ${req.message}`,
     .catch(wrap);
 
   if (response.stop_reason === "refusal") {
-    return "I can’t help with that one — let’s stick to the question. What part of the explanation felt fuzzy?";
+    return "I can’t help with that one. Let’s stick to the question. What part of the explanation felt fuzzy?";
   }
   const text = response.content
     .flatMap((block) => (block.type === "text" ? [block.text] : []))
     .join("")
     .trim();
-  return text || "Let’s look at it another way — which step felt unclear?";
+  return text || "Let’s look at it another way. Which step felt unclear?";
 }

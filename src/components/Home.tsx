@@ -104,7 +104,7 @@ export function Home({
         <section className="feed" aria-labelledby="feed-heading">
           <div className="feed__heading">
             <h2 id="feed-heading" className="feed__title">
-              Your daily dose of discovery
+              Here’s your daily dose of discovery.
             </h2>
           </div>
           <Tabs
@@ -133,7 +133,7 @@ export function Home({
             (history.length === 0 ? (
               <div className="empty-state">
                 <Sparkles size={28} aria-hidden />
-                <p className="empty-state__title">No quizzes yet</p>
+                <p className="empty-state__title">You haven’t finished a quiz yet.</p>
                 <p>Finish a quiz and it’ll show up here so you can track how you’re growing.</p>
                 <Button variant="secondary" compact onClick={() => onFeedTab("suggested")}>
                   Browse suggestions
@@ -218,7 +218,6 @@ function Composer({
   return (
     <section className="hero" aria-labelledby="hero-heading">
       <form className="hero__copy" onSubmit={submit} noValidate>
-        <p className="hero__eyebrow">EVERY QUESTION IS A GOOD START.</p>
         <h1 id="hero-heading" className="hero__title">
           Stuck on something?
           <br />
@@ -251,7 +250,7 @@ function Composer({
           <p id="topic-help" className="field__helper">
             {showError
               ? "Add a little detail. Use at least 3 characters."
-              : "Be specific — a chapter, a skill or a question you’re stuck on."}
+              : "Be specific. Name a chapter, a skill or a question you’re stuck on."}
           </p>
         </div>
 
@@ -466,9 +465,8 @@ function MasteryCard({ progress }: { progress: Progress }) {
     <section className="card rail-card" aria-labelledby="mastery-heading">
       <div>
         <h2 id="mastery-heading" className="rail-card__title">
-          Your subjects
+          Here’s how you’re doing by subject.
         </h2>
-        <p className="rail-card__subtitle">Accuracy across your quizzes.</p>
       </div>
       {rows.length === 0 ? (
         <p className="rail-card__empty">Your accuracy by subject appears here after your first quiz.</p>

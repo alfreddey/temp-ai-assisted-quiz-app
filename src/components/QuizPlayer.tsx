@@ -196,7 +196,7 @@ export function QuizPlayer({
           ) : (
             <>
               <p className={cx("verdict", isCorrect ? "verdict--correct" : "verdict--wrong")} role="status">
-                {isCorrect ? "Nailed it! +10 points" : "Not quite — here’s the why."}
+                {isCorrect ? "Nailed it! +10 points" : "Not quite. Here’s why."}
               </p>
               <Button icon={isLast ? Sparkles : ArrowRight} onClick={next}>
                 {isLast ? "See results" : "Next question"}
@@ -229,7 +229,7 @@ export function Explanation({ question, correct }: { question: Question; correct
           <Avatar initials="AI" size={40} tone="mint" expert={correct} />
           <div>
             <p className="author__name author__name--regular">Loop AI</p>
-            <p className="author__detail author__detail--12">Step-by-step explanation</p>
+            
           </div>
         </div>
         {correct ? (

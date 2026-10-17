@@ -630,11 +630,6 @@ button {
   gap: 18px;
   padding: 0 14px;
 }
-.sidebar__heading {
-  font-size: 11px;
-  color: var(--text-secondary);
-  letter-spacing: 0.02em;
-}
 .sidebar__subject {
   display: flex;
   align-items: center;
@@ -683,10 +678,6 @@ button {
   display: flex;
   flex-direction: column;
   gap: var(--space-16);
-}
-.hero__eyebrow {
-  font: 800 11px/1 var(--font-body);
-  color: var(--text-green-700);
 }
 .hero__title {
   font: 900 43px/1.08 var(--font-display);
@@ -882,9 +873,6 @@ button {
   font-size: 11px;
   color: var(--text-secondary);
 }
-.author__detail--12 {
-  font-size: 12px;
-}
 
 .empty-state {
   display: flex;
@@ -979,11 +967,6 @@ button {
 }
 .rail-card__title {
   font: 800 22px/1.2 var(--font-display);
-}
-.rail-card__subtitle {
-  margin-top: 5px;
-  font-size: 12px;
-  color: var(--text-secondary);
 }
 .rail-card__empty {
   font-size: 13px;

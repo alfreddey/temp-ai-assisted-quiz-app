@@ -6,7 +6,7 @@ import { Explanation } from "./QuizPlayer";
 import { Badge, Button, cx } from "./ui";
 
 function cheer(ratio: number): { title: string; body: string } {
-  if (ratio === 1) return { title: "Flawless. That’s the ‘aha!’", body: "Every answer right — try the next level up to keep stretching." };
+  if (ratio === 1) return { title: "Flawless. That’s the ‘aha!’", body: "You got every answer right. Try the next level up to keep stretching." };
   if (ratio >= 0.7) return { title: "Strong work!", body: "You’ve got the core idea. Review the misses below to lock it in." };
   if (ratio >= 0.4) return { title: "You’re getting there.", body: "Each explanation below is a step closer. A second round usually clicks." };
   return { title: "Every question is a good start.", body: "Read through the why for each one, then try a fresh version." };

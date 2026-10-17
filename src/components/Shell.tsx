@@ -128,7 +128,6 @@ export function Sidebar({
       </nav>
 
       <div className="sidebar__subjects">
-        <p className="sidebar__heading">YOUR SUBJECTS</p>
         {SUBJECTS.slice(0, 4).map((subject) => {
           const Icon = SUBJECT_ICONS[subject];
           return (
@@ -146,10 +145,9 @@ export function Sidebar({
 
       <div className="sidebar__footer">
         <p>
-          <CircleHelp size={12} aria-hidden /> AI can make mistakes — check
+          <CircleHelp size={12} aria-hidden /> AI can make mistakes, so check
           explanations that feel off.
         </p>
-        <p>Loop · Learning together</p>
       </div>
     </aside>
   );
