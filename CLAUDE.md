@@ -22,6 +22,7 @@ Never use the long dash (em dash) or the short dash (en dash). This is a hard ru
 
 ## Version control
 In this project, commit and push finished work to the open PR branch without asking first, because I review every PR before I merge it. Never push to `main`, never merge a PR, and never rewrite history that is already pushed.
+Before every push, check whether the branch's PR is still open. If it was closed or merged, open a new PR for the work after pushing, and tell me the new link, for example "PR #1 was closed, so I opened #2."
 
 ## Explanations
 When I ask you to explain something, answer **concisely and simply**, and **always prefer examples** over prose:
