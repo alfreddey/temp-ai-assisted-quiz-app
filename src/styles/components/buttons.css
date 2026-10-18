@@ -1,0 +1,92 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  height: 48px;
+  padding: 0 var(--space-24);
+  border: 0;
+  border-radius: var(--radius-full);
+  font: 700 14px/1 var(--font-body);
+  white-space: nowrap;
+  transition:
+    background-color 120ms ease,
+    box-shadow 120ms ease;
+}
+.btn--compact {
+  height: 40px;
+  padding: 0 18px;
+  font-size: 13px;
+}
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.btn--primary {
+  background: var(--action-primary);
+  color: var(--text-primary);
+}
+.btn--primary:hover:not(:disabled) {
+  background: var(--surface-tone-1);
+}
+
+.btn--secondary {
+  background: var(--surface-default);
+  border: 2px solid var(--border-ink-900);
+  color: var(--text-primary);
+}
+.btn--secondary:hover:not(:disabled) {
+  background: var(--surface-green-50);
+}
+
+.btn--tertiary {
+  background: var(--surface-default);
+  color: var(--text-primary);
+}
+.btn--tertiary:hover:not(:disabled) {
+  background: var(--surface-green-50);
+}
+
+.btn--destructive {
+  background: var(--surface-red-700);
+  color: var(--text-inverse);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  background: var(--surface-tone-2);
+  border-color: var(--surface-tone-2);
+  color: var(--text-tone-3);
+}
+.btn[aria-busy="true"]:disabled {
+  cursor: progress;
+  color: var(--text-primary);
+}
+.btn--primary[aria-busy="true"] {
+  background: var(--action-primary);
+}
+.btn--secondary[aria-busy="true"] {
+  background: var(--surface-default);
+  border-color: var(--border-ink-900);
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  background: var(--surface-default);
+  color: var(--text-primary);
+}
+.icon-btn:hover {
+  background: var(--surface-green-50);
+}
+.icon-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-color: var(--border-green-700);
+}

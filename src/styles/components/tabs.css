@@ -1,0 +1,32 @@
+.tabs {
+  display: flex;
+  gap: 26px;
+  border-bottom: 1px solid var(--border-default);
+}
+.tab {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: 500 13px/1.2 var(--font-body);
+  color: var(--text-secondary);
+}
+.tab::after {
+  content: "";
+  height: 3px;
+  width: 100%;
+  border-radius: var(--radius-3);
+  background: transparent;
+}
+.tab--active {
+  color: var(--text-primary);
+  font-weight: 400;
+}
+.tab--active::after {
+  background: var(--surface-green-700);
+}
+.tab:hover {
+  color: var(--text-primary);
+}

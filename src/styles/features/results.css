@@ -1,0 +1,116 @@
+.results__hero {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: var(--space-32);
+  border-radius: var(--radius-32);
+  background: var(--surface-strong);
+  color: var(--text-inverse);
+}
+.results__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+}
+.results__heading h1 {
+  font: 900 36px/40px var(--font-display);
+  letter-spacing: -1.2px;
+}
+.results__heading h1:focus {
+  outline: none;
+}
+.results__heading svg {
+  color: var(--text-mint-400);
+  flex: none;
+}
+.results__score {
+  font: 900 48px/52px var(--font-display);
+  letter-spacing: -1.2px;
+  color: var(--text-mint-400);
+}
+.results__badges {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+.results__body {
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 520px;
+}
+.results__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+}
+.results__actions .btn--tertiary {
+  background: transparent;
+  color: var(--text-inverse);
+}
+.results__actions .btn--tertiary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+.review-item {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.review-item__title {
+  font-size: 20px;
+}
+.review-item__answers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12) var(--space-32);
+}
+.review-item__answers dt {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.review-item__answers dd {
+  margin-top: 4px;
+  font-weight: 700;
+}
+.review-item__answers .is-correct {
+  color: var(--text-green-700);
+}
+.review-item__answers .is-wrong {
+  color: var(--text-red-700);
+}
+.review-item__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-green-700);
+}
+.review-item .answer-card {
+  padding: 0;
+  border: 0;
+}
+
+@media (max-width: 720px) {
+  .results__hero {
+    padding: var(--space-24);
+    border-radius: var(--radius-24);
+  }
+  .results__heading h1 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+  .results__actions .btn {
+    flex: 1 1 100%;
+  }
+}

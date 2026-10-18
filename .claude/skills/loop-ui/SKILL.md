@@ -10,9 +10,10 @@ The source of truth is the Figma file "Loop UI kit v1.0" (Foundations, Controls 
 ## Reuse before you write
 
 1. Colours, spacing, radius and fonts live in `src/styles/tokens.css`. Use the CSS variables. Never hard-code a hex value or pixel size that has a token.
-2. Basic components live in `src/components/ui.tsx`: `Button`, `IconButton`, `Badge`, `SubjectChip`, `Avatar`, `Tabs` and `Brand`. Extend these with a prop before making a new one.
-3. Shared class patterns live in `src/styles/app.css`: `.card`, `.question-card`, `.answer-card`, `.field`, `.chip`, `.option` and the rail cards.
+2. Basic components live in `src/components/ui/`, one per file, and are exported from `index.ts`: `Button`, `IconButton`, `Badge`, `SubjectChip`, `Avatar`, `Tabs` and `Brand`. Extend these with a prop before making a new one.
+3. Styles live in `src/styles/`: one file per component in `components/`, per layout area in `layout/`, and per screen in `features/`. Shared cards (`.card`, `.question-card`) are in `components/cards.css`. Add new files to `index.css`, and keep a component's responsive rules in its own file.
 4. Icons come from `lucide-react`, the same set the Figma kit uses. Match the icon name used in Figma.
+5. New screens go in `src/features/<screen>/`. Keep components small and move logic into hooks or plain helper files next to them.
 
 ## Rules from the kit
 
