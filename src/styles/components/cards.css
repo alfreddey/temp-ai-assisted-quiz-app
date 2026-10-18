@@ -1,0 +1,85 @@
+/* The kit's card surfaces and the question card layout shared by home, quiz and results. */
+.card {
+  background: var(--surface-default);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-24);
+  padding: var(--space-24);
+}
+
+.question-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.question-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+.meta {
+  display: flex;
+  gap: var(--space-8);
+  font-size: 12px;
+}
+.meta__subject {
+  color: var(--text-green-700);
+}
+.meta__level {
+  color: var(--text-secondary);
+  white-space: pre;
+}
+.question-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+.question-card__title {
+  font: 800 24px/1.25 var(--font-display);
+}
+.question-card__title:focus {
+  outline: none;
+}
+.question-card__body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.question-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.author__name {
+  font-weight: 700;
+  font-size: 12px;
+}
+.author__name--regular {
+  font-weight: 400;
+  font-size: 14px;
+}
+.author__detail {
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 720px) {
+  .question-card__meta {
+    align-items: flex-start;
+  }
+  .question-card__actions .btn {
+    flex: 1;
+  }
+  .question-card__title {
+    font-size: 21px;
+  }
+}

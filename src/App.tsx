@@ -1,78 +1,68 @@
 import { useEffect, useRef, useState } from "react";
-import type { Quiz, QuizRequest, Subject } from "../shared/quiz";
-import { requestQuiz } from "./api";
-import { Home, type FeedTab } from "./components/Home";
-import { QuizPlayer } from "./components/QuizPlayer";
-import { Results } from "./components/Results";
-import { MobileNav, Sidebar, TopNav, type NavTarget } from "./components/Shell";
-import { useProgress } from "./progress";
+import { MIN_TOPIC_LENGTH, type Subject } from "../shared/catalog";
+import type { QuizRequest } from "../shared/schema";
+import { useQuizFlow } from "./app/useQuizFlow";
+import { MobileNav } from "./components/layout/MobileNav";
+import type { NavTarget } from "./components/layout/navigation";
+import { Sidebar } from "./components/layout/Sidebar";
+import { TopNav } from "./components/layout/TopNav";
+import type { FeedTab } from "./features/home/feed/QuizFeed";
+import { Home } from "./features/home/Home";
+import { DEFAULT_QUESTION_COUNT } from "./features/home/suggestions";
+import { QuizPlayer } from "./features/quiz/QuizPlayer";
+import { Results } from "./features/results/Results";
+import { useProgress } from "./progress/useProgress";
 
-type View =
-  | { kind: "home" }
-  | { kind: "quiz"; quiz: Quiz; request: QuizRequest; notice?: string }
-  | { kind: "results"; quiz: Quiz; request: QuizRequest; answers: number[] };
+const QUICK_QUIZ_DEFAULTS: Omit<QuizRequest, "topic" | "subject"> = {
+  level: "Middle school",
+  count: DEFAULT_QUESTION_COUNT,
+};
+const FALLBACK_SUBJECT: Subject = "Mathematics";
 
 export default function App() {
   const { progress, recordQuiz } = useProgress();
-  const [view, setView] = useState<View>({ kind: "home" });
+  const flow = useQuizFlow(recordQuiz);
+  const { view } = flow;
   const [feedTab, setFeedTab] = useState<FeedTab>("suggested");
   const [subjectFilter, setSubjectFilter] = useState<Subject | null>(null);
-  const [generating, setGenerating] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const composerRef = useRef<HTMLInputElement>(null);
-  const focusComposer = useRef(false);
+  const shouldFocusComposer = useRef(false);
 
-  const active: NavTarget | null =
+  const activeNav: NavTarget | null =
     view.kind !== "home" ? null : feedTab === "recent" ? "history" : "home";
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
-    if (view.kind === "home" && focusComposer.current) {
-      focusComposer.current = false;
+    if (view.kind === "home" && shouldFocusComposer.current) {
+      shouldFocusComposer.current = false;
       composerRef.current?.focus();
     }
   }, [view]);
 
-  async function generate(request: QuizRequest) {
-    if (generating) return;
-    setGenerating(true);
-    setError(null);
-    if (view.kind !== "home") setView({ kind: "home" });
-    try {
-      const { quiz, notice } = await requestQuiz(request);
-      setView({ kind: "quiz", quiz, request, notice });
-    } catch (e) {
-      setError((e as Error).message);
-    } finally {
-      setGenerating(false);
-    }
-  }
-
   function navigate(target: NavTarget) {
     setFeedTab(target === "history" ? "recent" : "suggested");
-    setView({ kind: "home" });
+    flow.goHome();
   }
 
-  function newQuiz() {
-    focusComposer.current = true;
-    setView({ kind: "home" });
+  function startNewQuiz() {
     if (view.kind === "home") {
       composerRef.current?.focus();
       composerRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+      return;
     }
+    shouldFocusComposer.current = true;
+    flow.goHome();
   }
 
-  function finish(quiz: Quiz, request: QuizRequest, answers: number[]) {
-    const score = answers.filter((a, i) => a === quiz.questions[i].answerIndex).length;
-    recordQuiz({
-      title: quiz.title,
-      topic: request.topic,
-      subject: request.subject,
-      level: request.level,
-      score,
-      total: quiz.questions.length,
-    });
-    setView({ kind: "results", quiz, request, answers });
+  function startQuickQuiz(topic: string) {
+    if (topic.length < MIN_TOPIC_LENGTH) return;
+    flow.generate({ topic, subject: subjectFilter ?? FALLBACK_SUBJECT, ...QUICK_QUIZ_DEFAULTS });
+  }
+
+  function pickSubject(subject: Subject) {
+    setSubjectFilter(subject);
+    setFeedTab("suggested");
+    flow.goHome();
   }
 
   return (
@@ -81,29 +71,18 @@ export default function App() {
         Skip to content
       </a>
       <TopNav
-        active={active}
+        active={activeNav}
         onNavigate={navigate}
-        onNewQuiz={newQuiz}
-        onQuickQuiz={(topic) =>
-          void generate({
-            topic,
-            subject: subjectFilter ?? "Mathematics",
-            level: "Middle school",
-            count: 5,
-          })
-        }
-        busy={generating}
+        onNewQuiz={startNewQuiz}
+        onQuickQuiz={startQuickQuiz}
+        busy={flow.generating}
       />
       <div className="workspace">
         <Sidebar
           progress={progress}
-          active={active}
+          active={activeNav}
           onNavigate={navigate}
-          onPickSubject={(subject) => {
-            setSubjectFilter(subject);
-            setFeedTab("suggested");
-            setView({ kind: "home" });
-          }}
+          onPickSubject={pickSubject}
         />
         <main id="main" className="main">
           {view.kind === "home" && (
@@ -113,33 +92,32 @@ export default function App() {
               onFeedTab={setFeedTab}
               subjectFilter={subjectFilter}
               onSubjectFilter={setSubjectFilter}
-              onGenerate={(req) => void generate(req)}
-              generating={generating}
-              error={error}
+              onGenerate={flow.generate}
+              generating={flow.generating}
+              error={flow.error}
               composerRef={composerRef}
             />
           )}
           {view.kind === "quiz" && (
             <QuizPlayer
-              key={view.quiz.title + view.request.topic}
               quiz={view.quiz}
               notice={view.notice}
-              onExit={() => setView({ kind: "home" })}
-              onFinish={(answers) => finish(view.quiz, view.request, answers)}
+              onExit={flow.goHome}
+              onFinish={(answers) => flow.finish(view.quiz, view.request, answers)}
             />
           )}
           {view.kind === "results" && (
             <Results
               quiz={view.quiz}
               answers={view.answers}
-              onRetake={() => void generate(view.request)}
-              onNewQuiz={newQuiz}
+              onRetake={() => flow.generate(view.request)}
+              onNewQuiz={startNewQuiz}
               onHome={() => navigate("home")}
             />
           )}
         </main>
       </div>
-      <MobileNav active={active} onNavigate={navigate} onNewQuiz={newQuiz} />
+      <MobileNav active={activeNav} onNavigate={navigate} onNewQuiz={startNewQuiz} />
     </>
   );
 }

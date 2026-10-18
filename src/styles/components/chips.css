@@ -1,0 +1,38 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: 10px var(--space-16);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  background: var(--surface-default);
+  color: var(--text-primary);
+  font: 600 13px/1.15 var(--font-body);
+  white-space: nowrap;
+}
+.chip:hover:not(:disabled) {
+  background: var(--surface-green-50);
+}
+.chip--selected,
+.chip--selected:hover:not(:disabled) {
+  background: var(--surface-strong);
+  border-color: var(--border-ink-900);
+  color: var(--text-inverse);
+}
+.chip:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.chip:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.chip-row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px;
+  margin: -4px;
+  scrollbar-width: none;
+}
